@@ -4,39 +4,26 @@
 // 3. A tracker object that will controll functionality of app
 // 4. Event listener(s) for image clicks
 
-var productImageNames = ['img/bag.jpg', 'img/banana.jpg', 'img/bathroom.jpg', 'img/boots.jpg', 'img/breakfast.jpg', 'img/bubblegum.jpg', 'img/chair.jpg', 'img/cthulhu.jpg', 'img/dog-duck.jpg', 'img/dragon.jpg', 'img/pen.jpg', 'img/pet-sweep.jpg', 'img/scissors.jpg', 'img/shark.jpg', 'img/sweep.png', 'img/tauntaun.jpg', 'img/unicorn.jpg', 'img/usb.gif', 'img/water-can.jpg', 'img/wine-glass.jpg'];
+//Only using the 'bs' to start just ot make debugging easier.
+var productImageNames = ['bag.jpg', 'banana.jpg', 'bathroom.jpg', 'boots.jpg', 'breakfast.jpg', 'bubblegum.jpg',];
 
 //'Not sure why that last element in the array is discolored? -- Inquire later//
 
+//I know I'm going to need to count the total number of clicks regardless of how I generate images//
 var clickCounter = 0;
 
 //Need to grab a random number to later pick three random pictures from the array//
-function getRandom(min, max) {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
-function findImage(name, src){
-  this.name = name;
-  this.image = src;
-  this.timesSelected = 0;
-  this.picked = 0;
-}
-
-var productsArray = [];
-
-function Products() {
+function displayImage(){
+    var num = Math.floor(Math.random() * (productImageNames.length+1));
+    document.canvas.src = productImageNames[num];
 
 }
 
-// a simple IIFE to build all the product images
-(function() {
-  // build the objects
-})()
-
-var tracker = {
-  // lots of properties and methods
-}
-
-someEl.addEventListener('click', function(e) {
-
-})
+// // a simple IIFE to build all the product images
+// (function() {
+//   // build the objects
+// })()
+//
+// var tracker = {
+//   // lots of properties and methods
+// }
