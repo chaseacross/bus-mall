@@ -14,9 +14,8 @@ var clickCounter = 0;
 
 //Need to grab a random number to later pick three random pictures from the array//
 function displayImage(){
-    var num = Math.floor(Math.random() * (productImageNames.length+1));
+    var num = Math.floor(Math.random() * (productImageNames.length));
     document.canvas.src = productImageNames[num];
-
 }
 
 // // a simple IIFE to build all the product images
