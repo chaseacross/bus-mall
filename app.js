@@ -14,13 +14,20 @@ var clickCounter = 0;
 
 //Need to grab a random number to later pick three random pictures from the array//
 function displayImage(){
+  if (clickCounter < 15) {
     var num1 = Math.floor(Math.random() * (productImageNames.length));
     var num2 = Math.floor(Math.random() * (productImageNames.length));
     var num3 = Math.floor(Math.random() * (productImageNames.length));
     document.canvas1.src = productImageNames[num1];
     document.canvas2.src = productImageNames[num2];
     document.canvas3.src = productImageNames[num3];
+    clickCounter++;
+  } //If clickCounter < 15
 };
+
+function counterButton(){
+  alert('Click counter is at ' + clickCounter +'.')
+}
 
 
 
