@@ -41,12 +41,28 @@ var clickCounter = 0;
 //Need to grab a random number to later pick three random pictures from the array//
 function displayImage(){
   if (clickCounter < 15) {
-    var num1 = Math.floor(Math.random() * (productImageNames.length));
-    var num2 = Math.floor(Math.random() * (productImageNames.length));
-    var num3 = Math.floor(Math.random() * (productImageNames.length));
-    document.canvas1.src = productImageNames[num1];
-    document.canvas2.src = productImageNames[num2];
-    document.canvas3.src = productImageNames[num3];
+    var gen_nums = [];
+
+    function in_array(array, el) {
+       for(var i = 0 ; i < array.length; i++)
+           if(array[i] == el) return true;
+       return false;
+    }
+    function get_rand(array) {
+        var rand = array[Math.floor(Math.random()*array.length)];
+        if(!in_array(gen_nums, rand)) {
+           gen_nums.push(rand);
+           return rand;
+        }
+        return get_rand(array);
+    }
+    var threeRandom = [];
+    for(var i = 0; i < 3; i++) {
+        threeRandom.push(get_rand(productImageNames));
+    }
+    document.canvas1.src = threeRandom[0];
+    document.canvas2.src = threeRandom[1];
+    document.canvas3.src = threeRandom[2];
     clickCounter++;
   }
 };
