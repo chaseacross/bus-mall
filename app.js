@@ -39,6 +39,8 @@ var clickCounter = 0;
 })();
 
 //Need to grab a random number to later pick three random pictures from the array//
+document.getElementById("productOne").addEventListener("click", displayImage);
+
 function displayImage(){
   if (clickCounter < 15) {
     var gen_nums = [];
@@ -66,6 +68,11 @@ function displayImage(){
     clickCounter++;
   }
 };
+
+//Setting up point counter for one image//
+function pointCounter1() {
+  console.log('Point counter working.');
+}
 
 //using this to test counter function//
 function counterButton(){
