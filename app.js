@@ -40,6 +40,8 @@ var clickCounter = 0;
 
 //Need to grab a random number to later pick three random pictures from the array//
 document.getElementById("productOne").addEventListener("click", displayImage);
+document.getElementById("productTwo").addEventListener("click", displayImage);
+document.getElementById("productThree").addEventListener("click", displayImage);
 
 function displayImage(){
   if (clickCounter < 15) {
