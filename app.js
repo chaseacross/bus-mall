@@ -4,9 +4,9 @@
 // 3. A tracker object that will controll functionality of app
 // 4. Event listener(s) for image clicks
 
-//Only using the 'bs' to start just ot make debugging easier.
+//Only using the 'b' items to start just ot make debugging easier. Theoretically, adding in more items to the array won't matter if it works.
 var productImageNames = ['bag.jpg', 'banana.jpg', 'bathroom.jpg', 'boots.jpg', 'breakfast.jpg', 'bubblegum.jpg',];
-var productSelections =[]
+var productSelections = []
 
 
 //I know I'm going to need to count the total number of clicks regardless of how I generate images//
@@ -14,12 +14,28 @@ var clickCounter = 0;
 
 //Using an IFFE to generate random pictures on page load//
 (function loadingImages(){
-  var num1 = Math.floor(Math.random() * (productImageNames.length));
-  var num2 = Math.floor(Math.random() * (productImageNames.length));
-  var num3 = Math.floor(Math.random() * (productImageNames.length));
-  document.canvas1.src = productImageNames[num1];
-  document.canvas2.src = productImageNames[num2];
-  document.canvas3.src = productImageNames[num3];
+  var gen_nums = [];
+
+  function in_array(array, el) {
+     for(var i = 0 ; i < array.length; i++)
+         if(array[i] == el) return true;
+     return false;
+  }
+  function get_rand(array) {
+      var rand = array[Math.floor(Math.random()*array.length)];
+      if(!in_array(gen_nums, rand)) {
+         gen_nums.push(rand);
+         return rand;
+      }
+      return get_rand(array);
+  }
+  var threeRandom = [];
+  for(var i = 0; i < 3; i++) {
+      threeRandom.push(get_rand(productImageNames));
+  }
+  document.canvas1.src = threeRandom[0];
+  document.canvas2.src = threeRandom[1];
+  document.canvas3.src = threeRandom[2];
 })();
 
 //Need to grab a random number to later pick three random pictures from the array//
@@ -32,17 +48,20 @@ function displayImage(){
     document.canvas2.src = productImageNames[num2];
     document.canvas3.src = productImageNames[num3];
     clickCounter++;
-  } //If clickCounter < 15
-};//display image button//
-
+  }
+};
 
 //using this to test counter function//
 function counterButton(){
   alert('Click counter is at ' + clickCounter +'.');
-  alert(productSelections);
-}
+  alert('Product selections: ' + productSelections);
+};
 
 
+
+
+//TO COUNT CLICKS, HAVE THE NUMBER (num) PICKED PASS INTO AN ARRAY, THEN AT 15
+//COUNT INSTANCES, PERHAPS WITH A FOR LOOP THAT PULLS THE NUMBER OUT OF THE ARRAY//
 
 // // a simple IIFE to build all the product images
 // (function() {
