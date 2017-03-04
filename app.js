@@ -12,7 +12,7 @@ var productSelections = []
 //I know I'm going to need to count the total number of clicks regardless of how I generate images//
 var clickCounter = 0;
 
-//Using an IFFE to generate random pictures on page load//
+//Using an IFFE to generate three random non-dupli pictures on page load//
 (function loadingImages(){
   var gen_nums = [];
 
@@ -29,6 +29,7 @@ var clickCounter = 0;
       }
       return get_rand(array);
   }
+
   var threeRandom = [];
   for(var i = 0; i < 3; i++) {
       threeRandom.push(get_rand(productImageNames));
@@ -38,12 +39,13 @@ var clickCounter = 0;
   document.canvas3.src = threeRandom[2];
 })();
 
-//Need to grab a random number to later pick three random pictures from the array//
-document.getElementById("productOne").addEventListener("click", displayImage);
-document.getElementById("productTwo").addEventListener("click", displayImage);
-document.getElementById("productThree").addEventListener("click", displayImage);
+//Event listener elements connected to buttons on Index -- they execute my random non-dupli image generating function//
+document.getElementById("productOne").addEventListener("click", productPopulate);
+document.getElementById("productTwo").addEventListener("click", productPopulate);
+document.getElementById("productThree").addEventListener("click", productPopulate);
 
-function displayImage(){
+//This is essentially a non IFFE version of my random image generator that responds to button clicks//
+function productPopulate(){
   if (clickCounter < 15) {
     var gen_nums = [];
 
@@ -52,6 +54,7 @@ function displayImage(){
            if(array[i] == el) return true;
        return false;
     }
+
     function get_rand(array) {
         var rand = array[Math.floor(Math.random()*array.length)];
         if(!in_array(gen_nums, rand)) {
@@ -67,19 +70,15 @@ function displayImage(){
     document.canvas1.src = threeRandom[0];
     document.canvas2.src = threeRandom[1];
     document.canvas3.src = threeRandom[2];
-    clickCounter++;
   }
 };
 
-//Setting up point counter for one image//
-function pointCounter1() {
-  console.log('Point counter working.');
-}
+//Click counter function being executed by same button//
+
 
 //using this to test counter function//
 function counterButton(){
   alert('Click counter is at ' + clickCounter +'.');
-  alert('Product selections: ' + productSelections);
 };
 
 
